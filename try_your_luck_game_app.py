@@ -1,5 +1,7 @@
-GAMES_OPTIONS = ["Powerball", "Megamillions", "Northstar", "Gopher5",\
-"LottoAmerica", "Win_for_life"]
+import compute_data
+
+GAMES_OPTIONS = ["Powerball", "MegaMillions", "Northstar", "GopherFive",\
+"LottoAmerica", "WinForlife"]
 
 GAMES_CHOSEN = [] # Every time the user selects one, it gets added to this list.
 
@@ -25,6 +27,7 @@ def validate_input():
             print("Enter a number:")
 
 def display_options(msg):
+    numb_of_years = 0
     while True:
         display_games(GAMES_OPTIONS)
         print(msg)
@@ -32,18 +35,27 @@ def display_options(msg):
         remove_add_display_game_chosen(game_chosen_numb)
         print("\nYour selection so far:")
         display_games(GAMES_CHOSEN)
-        yes_no = input("Do you want to add another game? y/n:\n")
+        yes_no = input("\nDo you want to add another game? \ntype:'y' to continue:"\
+                        " or press 'Enter' to Exit:\n")
         if yes_no.lower() != 'y': break
 
 def main():
     # This is to let the user know what needs to entered.
-    msg_numb_years = "Enter the number of years(whole number only) you'd like to try:"
-    msg_select_one = "^^Select one option. Enter the number:"
+    msg_select_one = "\n^ Select one option. Enter the number:"
 
+    # Display the games and have the user selec one, etc.
     display_options(msg_select_one)
 
+    # Shows the user the games chosen to play.
+    print('You selected:')
     display_games(GAMES_CHOSEN)
-    # numb_of_years = validate_input(msg_numb_years) # get an int.
+
+    print("\nEnter the number of years(whole number only) you'd like to try:")
+    # Get number of years.
+    numb_of_years = validate_input()
+
+    # Let the luck begin..
+    compute_data.compute_games_chosen(numb_of_years, GAMES_CHOSEN)
 
 if __name__ == "__main__":
     main()
