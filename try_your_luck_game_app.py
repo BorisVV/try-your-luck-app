@@ -49,9 +49,9 @@ def main():
 
     # TODO: The option to for the quick pick numbers is the same for all the games.
     # I'd like to change it to where the user cand do it for each game.
-    print("\nEnter how many times you want to do quick_picks in a number of year/s that you'd\
-     like to play?\n e.g. \n0 = Same numbers all time, \n1 = everyday, \n7 = everyday seven days(weekly),\
-     \n30 = every month: 'You get the idea :)'")
+    print("\nEnter how many times you want to do quick_picks in a number of year/s that you'd"\
+        "like to play?\n e.g. \n0 = Same numbers all time, \n1 = everyday, \n7 = everyday seven days(weekly),\
+        \n30 = every month: 'You get the idea :)'")
     numb_of_qpick = validate_integer()
 
     print("\nEnter the number of years(whole number only) you'd like to try:")
@@ -63,11 +63,6 @@ def main():
     # Compute data.
     if "Powerball" in GAMES_CHOSEN: compute_data.results_powerball(numb_of_days, numb_of_qpick)
     if "Northstar" in GAMES_CHOSEN: compute_data.results_northstar(numb_of_days, numb_of_qpick)
-
-    # Display results.
-    print("\nHere are the results in the {} year/s you entered:".format(numb_of_years))
-
-    compute_data.print_results(GAMES_CHOSEN)
 
 if __name__ == "__main__":
     main()
