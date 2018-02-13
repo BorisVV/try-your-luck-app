@@ -25,16 +25,16 @@ def validate_integer():
 
 def display_options():
 
-    display_games(GAMES_OPTIONS)
     while True:
+        display_games(GAMES_OPTIONS)
         # Display options and loop to get user's chosen ones.
         print("^  Select one option. Type the number (You can add more after one selection)"\
             "\nIf you want to select the rest or all of the other games at the same time"\
-            "\nType the number for Select All:")
+            "\nType the {number} for Select All:".format(number=len(GAMES_OPTIONS)))
         game_chosen_numb = validate_integer() # func to get int input only.
         # Any number that is less or greater than the length of GAMES_OPTIONS.
         if game_chosen_numb > len(GAMES_OPTIONS) or game_chosen_numb < 1:
-            print("Oops! Number not in list.")
+            print("-" * 50, "\nOops! Number {} not in list.".format(game_chosen_numb))
             continue
         # If the selection is the last option, which is select all.
         if game_chosen_numb == len(GAMES_OPTIONS):
@@ -44,12 +44,10 @@ def display_options():
         # If the above condition are false then.
         else:
             remove_add_display_game_chosen(game_chosen_numb)
-            print("\tYour selection so far:")
+            print("-" * 50, "\n\tYour selection so far:")
             display_games(GAMES_CHOSEN)
-            print("\tHere are the other options.")
-            display_games(GAMES_OPTIONS)
-            yes_no = input("\tType:'y/Yes' to add more, else, press 'ENTER' to continue:\n")
-            if yes_no.lower() != 'y' or yes_no.lower() != 'yes': continue
+            yes_no = input("Type: 'y/Yes' to add more, else, press 'ENTER' to continue:\n")
+            if yes_no.lower() != 'y' and yes_no.lower() != 'yes': break
 
 def main():
     # Display the games and have the user selec one, etc.
@@ -59,18 +57,26 @@ def main():
     print('\n**You selected:')
     display_games(GAMES_CHOSEN)
 
-    # TODO: The option to for the quick pick numbers is the same for all the games.
-    # I'd like to change it to where the user cand do it for each game.
-    print("\nHow many times do you want to do quick_picks in a year/s? \n e.g."\
-        "\n0 = Same numbers all time, \n1 = everyday, \n7 = everyday seven days(weekly),"\
-        "\n30 = every month: 'You get the idea :)'")
-    numb_of_qpick = validate_integer()
-
-    print("\nEnter the number of years(whole number only) you'd like to try:")
-    # Get number of years.
-    numb_of_years = validate_integer()
+    while True:
+        print("Enter the number of years(whole number only) that you'd like to try:")
+        # Get number of years.
+        numb_of_years = validate_integer()
+        if numb_of_years < 1 or numb_of_years > 100:
+            print("Lets keep the number of years between 1 and 100")
+        else: break
 
     numb_of_days = numb_of_years * 365 # Need days to compute results.
+
+    while True:
+        print("\nHow many times do you want to do quick_picks in the {} year/s you entered? \n"\
+        "e.g."\
+        "\n0 = Same numbers all time, \n1 = everyday, \n7 = everyday seven days(weekly),"\
+        "\n30 = every month: 'You get the idea :)'".format(numb_of_years))
+        numb_of_qpick = validate_integer()
+        if numb_of_qpick > 30 or numb_of_qpick < 0:
+            print("\n Oops! We'll like to keep the number between 0 and 30 for now. try again!")
+        else: break
+
     print("# " * 40)
     print("Number or years {} \nYour quick pick is 1 every {} day/s".format(numb_of_years, numb_of_qpick))
 
