@@ -1,7 +1,7 @@
 import compute_data
 
 GAMES_OPTIONS = ["Powerball", "MegaMillions", "Northstar", "GopherFive",\
-"LottoAmerica", "WinForlife"]
+"LottoAmerica", "LuckyForLife"]
 
 GAMES_CHOSEN = [] # Every time the user selects one, it gets added to this list.
 
@@ -59,10 +59,22 @@ def main():
     numb_of_years = validate_integer()
 
     numb_of_days = numb_of_years * 365 # Need days to compute results.
+    print("# " * 40)
+    print("Number or years {} \nQuick pick {} day/s".format(numb_of_years, numb_of_qpick))
 
     # Compute data.
-    if "Powerball" in GAMES_CHOSEN: compute_data.results_powerball(numb_of_days, numb_of_qpick)
-    if "Northstar" in GAMES_CHOSEN: compute_data.results_northstar(numb_of_days, numb_of_qpick)
+    if "Northstar" in GAMES_CHOSEN:
+        compute_data.comp_draws("Northstar", numb_of_qpick, numb_of_days, compute_data.NORTHSTAR)
+    if "GopherFive" in GAMES_CHOSEN:
+        compute_data.comp_draws("GopherFive", numb_of_qpick, numb_of_days, compute_data.GOPHER5)
+    if "Powerball" in GAMES_CHOSEN:
+        compute_data.comp_draws("Powerball", numb_of_qpick, numb_of_days, compute_data.POWERBALL, compute_data.POWERPLAY)
+    if "MegaMillions" in GAMES_CHOSEN:
+        compute_data.comp_draws("MegaMillions", numb_of_qpick, numb_of_days, compute_data.MEGAMILLIONS, compute_data.MEGABALL)
+    if "LottoAmerica" in GAMES_CHOSEN:
+        compute_data.comp_draws("LottoAmerica", numb_of_qpick, numb_of_days, compute_data.LOTTOAMERICA, compute_data.LOTAMEPOWERPLAY)
+    if "LuckyForLife" in GAMES_CHOSEN:
+        compute_data.comp_draws("LuckyForLife", numb_of_qpick, numb_of_days, compute_data.LUCKYFORLIFE, compute_data.LUCKYBALL)
 
 if __name__ == "__main__":
     main()
