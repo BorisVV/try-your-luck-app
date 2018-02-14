@@ -62,12 +62,14 @@ def comp_draws(name, numbOfPicks, numbOfDays, drawFive, timesAWeek, drawOne=None
 
     if numbOfPicks == 0: # This is for the qpicks that are only drawn once for the time of the program.
         numbOfPicks = numbOfDays
+
+    userPicks = numbOfDays // 7
+    thisNumbOfPicks = userPicks // 7 // timesAWeek # thisNumbOfPicks var will change and want to keep the original intact.
     numbOfMatches = 0
-    thisNumbOfPicks = numbOfPicks # thisNumbOfPicks var will change and want to keep the original intact.
 
     print("\n\nWins with 4 or more numbers! for {}".format(name))
-
-    for numb in range(numbOfDays // numbOfPicks): # Fo the quick picks only.
+    thisCounter = 0
+    for numb in range(userPicks): # Fo the quick picks only.
         QUIT_PICK_FIVE = _pick_five(drawFive)
         if drawOne != None:
             QUIT_PICK_ONE = _pick_one(drawOne)
