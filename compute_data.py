@@ -15,6 +15,14 @@ COUNTER = 0
 QUIT_PICK_FIVE = set()
 QUIT_PICK_ONE = set()
 
+totalFourOrMore = 0
+
+def totalFourOrPlus():
+    if totalFourOrMore > 0:
+        print("\nTHERE WERE {} WINS!! WITH 4 OR MORE NUMBERS!".format(totalFourOrMore))
+    else:
+        print("\nNOT WININGS WITH 4 OR NUMBERS.")
+
 def _pick_five(game):
     # Get five numbers from the numbers in a game e.g. Northstar 1-31 add one to 31 for inclusive.
     # set is working good in this case, but I think list also works.
@@ -50,7 +58,7 @@ def display_results(years, name):
 
 def comp_draws(name, numbOfPicks, numbOfDays, drawFive, timesAWeek, drawOne=None):
     global ONE_NUMB, TWO_NUMBS, THREE_NUMBS, FOUR_NUMBS, FIVE_NUMBS, SIX_NUMBS,\
-           QUIT_PICK_FIVE, QUIT_PICK_ONE, COUNTER
+           QUIT_PICK_FIVE, QUIT_PICK_ONE, COUNTER, totalFourOrMore
 
     if numbOfPicks == 0: # This is for the qpicks that are only drawn once for the time of the program.
         numbOfPicks = numbOfDays
@@ -82,23 +90,25 @@ def comp_draws(name, numbOfPicks, numbOfDays, drawFive, timesAWeek, drawOne=None
                 elif numbOfMatches == 2: TWO_NUMBS += 1
                 elif numbOfMatches == 3: THREE_NUMBS += 1
                 if numbOfMatches > 3:
+                    totalFourOrMore += 1
                     if len(draw_one) == 0:
                         draw_one = 0
-                elif numbOfMatches == 4:
-                    FOUR_NUMBS += 1
-                    _wins_six_numbs_games((COUNTER/365), numbOfMatches, sorted(QUIT_PICK_FIVE),\
-                     QUIT_PICK_ONE, sorted(all_numbs), quick_one, sorted(draws), draw_one)
-                elif numbOfMatches == 5:
-                    FIVE_NUMBS += 1
-                    _wins_six_numbs_games((COUNTER/365), numbOfMatches, sorted(QUIT_PICK_FIVE),\
-                     QUIT_PICK_ONE,sorted(all_numbs), quick_one, sorted(draws), draw_one)
-                elif numbOfMatches == 6:
-                    SIX_NUMBS += 1
-                    _wins_six_numbs_games((COUNTER/365), numbOfMatches, sorted(QUIT_PICK_FIVE),\
-                    QUIT_PICK_ONE, sorted(all_numbs), quick_one, sorted(draws), draw_one)
+                    elif numbOfMatches == 4:
+                        FOUR_NUMBS += 1
+                        _wins_six_numbs_games((COUNTER/365), numbOfMatches, sorted(QUIT_PICK_FIVE),\
+                         QUIT_PICK_ONE, sorted(all_numbs), quick_one, sorted(draws), draw_one)
+                    elif numbOfMatches == 5:
+                        FIVE_NUMBS += 1
+                        _wins_six_numbs_games((COUNTER/365), numbOfMatches, sorted(QUIT_PICK_FIVE),\
+                         QUIT_PICK_ONE,sorted(all_numbs), quick_one, sorted(draws), draw_one)
+                    elif numbOfMatches == 6:
+                        SIX_NUMBS += 1
+                        _wins_six_numbs_games((COUNTER/365), numbOfMatches, sorted(QUIT_PICK_FIVE),\
+                        QUIT_PICK_ONE, sorted(all_numbs), quick_one, sorted(draws), draw_one)
 
             else:
                 numbOfMatches = len(draws)
+                if numbOfMatches > 3: totalFourOrMore += 1
                 if numbOfMatches == 1: ONE_NUMB += 1
                 elif numbOfMatches == 2: TWO_NUMBS += 1
                 elif numbOfMatches == 3: THREE_NUMBS += 1
@@ -114,8 +124,8 @@ def comp_draws(name, numbOfPicks, numbOfDays, drawFive, timesAWeek, drawOne=None
             COUNTER += 1
 
         # The reason for getting the remainder is important, let's say that a user wants his quick picks
-        # to be drawn every 30 days, the math is that 30 // 7 (to get a whole numb) in a year, there will
-        # be 14 days no draws, (4 missed in a twice a week game or more), data will not be acurate.
+        # to be drawn every 30 days, the math is that 30 // 7(to get a whole numb) = 4 and have 2 left.
+        # In a year, there will be 14 days no draws, (4 missed in a twice a week game or more), data will not be acurate.
         if thisNumbOfPicks % 7 == 1:
             thisNumbOfPicks = numbOfPicks
         else:

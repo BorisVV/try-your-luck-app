@@ -94,5 +94,7 @@ def main():
     if "LuckyForLife" in GAMES_CHOSEN:
         compute_data.comp_draws("LuckyForLife", numb_of_qpick, numb_of_days, compute_data.LUCKYFORLIFE, 2, compute_data.LUCKYBALL)
 
+    compute_data.totalFourOrPlus()
+
 if __name__ == "__main__":
     main()
