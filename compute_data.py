@@ -48,27 +48,29 @@ def display_results(years, name):
     if name == "Powerball" or name == "MegaMillions" or name == "LuckyForLife" or name == "LottoAmerica":
         print("There were {} times with 6 numbers.".format(SIX_NUMBS))
 
-def comp_draws(name, numbOfPicks, numbOfDays, drawFive, drawOne=None):
+def comp_draws(name, numbOfPicks, numbOfDays, drawFive, timesAWeek, drawOne=None):
     global ONE_NUMB, TWO_NUMBS, THREE_NUMBS, FOUR_NUMBS, FIVE_NUMBS, SIX_NUMBS,\
            QUIT_PICK_FIVE, QUIT_PICK_ONE, COUNTER
 
-    if numbOfPicks == 0:
+    if numbOfPicks == 0: # This is for the qpicks that are only drawn once for the time of the program.
         numbOfPicks = numbOfDays
+    numbOfMatches = 0
+    thisNumbOfPicks = numbOfPicks # thisNumbOfPicks var will change and want to keep the original intact.
 
     print("\n\nWins with 4 or more numbers! for {}".format(name))
-    numbOfMatches = 0
-    numbOfTimes = numbOfDays // numbOfPicks
-    for numb in range(numbOfTimes):
+
+    for numb in range(numbOfDays // numbOfPicks): # Fo the quick picks only.
         QUIT_PICK_FIVE = _pick_five(drawFive)
         if drawOne != None:
             QUIT_PICK_ONE = _pick_one(drawOne)
 
-        for x in range(numbOfPicks):
+        drawsWeekly = (thisNumbOfPicks // 7) * timesAWeek # To be used with the inner loop only.
+
+        for x in range(drawsWeekly):
             draws = _pick_five(drawFive)
             all_numbs = list(draws) # Save a list for printing.
             # Check and see if there are matching numbers and keep trak or print.
             draws &= QUIT_PICK_FIVE # kee only the matching numbes <set &= other>.
-
 
             if drawOne != None:
                 draw_one = _pick_one(drawOne)
@@ -108,7 +110,17 @@ def comp_draws(name, numbOfPicks, numbOfDays, drawFive, drawOne=None):
                 elif numbOfMatches == 5:
                     THREE_NUMBS += 1
                     _wins_five_numbs_games((COUNTER/365), numbOfMatches, sorted(QUIT_PICK_FIVE), sorted(all_numbs), sorted(draws))
+
             COUNTER += 1
+
+        # The reason for getting the remainder is important, let's say that a user wants his quick picks
+        # to be drawn every 30 days, the math is that 30 // 7 (to get a whole numb) in a year, there will
+        # be 14 days no draws, (4 missed in a twice a week game or more), data will not be acurate.
+        if thisNumbOfPicks % 7 == 1:
+            thisNumbOfPicks = numbOfPicks
+        else:
+            thisNumbOfPicks += (thisNumbOfPicks % 7)
+
     if FOUR_NUMBS == 0 and FIVE_NUMBS == 0 and SIX_NUMBS == 0:
         print("***No wins with 4 numbers or more.***")
 

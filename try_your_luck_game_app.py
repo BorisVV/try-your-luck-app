@@ -82,17 +82,17 @@ def main():
 
     # Compute data.
     if "Northstar" in GAMES_CHOSEN:
-        compute_data.comp_draws("Northstar", numb_of_qpick, numb_of_days, compute_data.NORTHSTAR)
+        compute_data.comp_draws("Northstar", numb_of_qpick, numb_of_days, compute_data.NORTHSTAR, 7)
     if "GopherFive" in GAMES_CHOSEN:
-        compute_data.comp_draws("GopherFive", numb_of_qpick, numb_of_days, compute_data.GOPHER5)
+        compute_data.comp_draws("GopherFive", numb_of_qpick, numb_of_days, compute_data.GOPHER5, 3)
     if "Powerball" in GAMES_CHOSEN:
-        compute_data.comp_draws("Powerball", numb_of_qpick, numb_of_days, compute_data.POWERBALL, compute_data.POWERPLAY)
+        compute_data.comp_draws("Powerball", numb_of_qpick, numb_of_days, compute_data.POWERBALL, 2, compute_data.POWERPLAY)
     if "MegaMillions" in GAMES_CHOSEN:
-        compute_data.comp_draws("MegaMillions", numb_of_qpick, numb_of_days, compute_data.MEGAMILLIONS, compute_data.MEGABALL)
+        compute_data.comp_draws("MegaMillions", numb_of_qpick, numb_of_days, compute_data.MEGAMILLIONS, 2, compute_data.MEGABALL)
     if "LottoAmerica" in GAMES_CHOSEN:
-        compute_data.comp_draws("LottoAmerica", numb_of_qpick, numb_of_days, compute_data.LOTTOAMERICA, compute_data.LOTAMEPOWERPLAY)
+        compute_data.comp_draws("LottoAmerica", numb_of_qpick, numb_of_days, compute_data.LOTTOAMERICA, 2, compute_data.LOTAMEPOWERPLAY)
     if "LuckyForLife" in GAMES_CHOSEN:
-        compute_data.comp_draws("LuckyForLife", numb_of_qpick, numb_of_days, compute_data.LUCKYFORLIFE, compute_data.LUCKYBALL)
+        compute_data.comp_draws("LuckyForLife", numb_of_qpick, numb_of_days, compute_data.LUCKYFORLIFE, 2, compute_data.LUCKYBALL)
 
 if __name__ == "__main__":
     main()
