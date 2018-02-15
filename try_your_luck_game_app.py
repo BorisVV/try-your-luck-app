@@ -61,20 +61,20 @@ def main():
         print("Enter the number of years(whole number only) that you'd like to try:")
         # Get number of years.
         numb_of_years = validate_integer()
-        if numb_of_years < 1 or numb_of_years > 100:
-            print("Lets keep the number of years between 1 and 100")
+        if numb_of_years < 1 or numb_of_years > 30:
+            print("Lets keep the number of years between 1 and 30")
         else: break
 
     numb_of_days = numb_of_years * 365 # Need days to compute results.
 
     while True:
-        print("\nHow many times do you want to do quick_picks in the {} year/s you entered? \n"\
-        "e.g."\
-        "\n0 = Same numbers all time, \n1 = everyday, \n7 = everyday seven days(weekly),"\
-        "\n30 = every month: 'You get the idea :)'".format(numb_of_years))
+        print("\nHow many times do you want to do quick_picks in the {} year/s you entered?"\
+        "\n1 = Same quick pick all time?, \n7 = weekly?, \n14 = every two weeks?,"\
+        "\n21 = every three weeks?, or \n28 = every month?:".format(numb_of_years))
         numb_of_qpick = validate_integer()
-        if numb_of_qpick > 30 or numb_of_qpick < 0:
-            print("\n Oops! We'll like to keep the number between 0 and 30 for now. try again!")
+        if numb_of_qpick != 1 and numb_of_qpick != 7 and numb_of_qpick != 14\
+                and numb_of_qpick != 21 and numb_of_qpick != 28:
+            print("\n Oops! Enter one number in options only. try again!")
         else: break
 
     print("# " * 40)
