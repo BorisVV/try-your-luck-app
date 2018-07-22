@@ -45,7 +45,7 @@ def _wins_six_numbs_games(*sixNumbs):
 
 def display_results(years, name):
     print("  Here are the numbers of times each match ocurred for"\
-    "\n {} year/s for {}"\
+    "\n  {} year/s for {}"\
     "\nThere were {} times with 1 numbers."\
     "\nThere were {} times with 2 numbers."\
     "\nThere were {} times with 3 numbers."\
@@ -72,7 +72,7 @@ def comp_draws(name, numbOfPicks, numbOfDays, drawFive, timesAWeek, drawOne=None
     numbOfMatches = 0
     thisCounter = 0
 
-    print("\n\nWins with 4 or more numbers! for {}".format(name))
+    print("\nWins with 4 or more numbers! for {}".format(name))
 
     for qpick in range(numbOfDays // numbOfPicks): # Fo the quick picks only.
         QUIT_PICK_FIVE = _pick_five(drawFive)

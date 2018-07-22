@@ -78,7 +78,7 @@ def main():
         else: break
 
     print("# " * 40)
-    print("Number or years {} \nYour quick pick is 1 every {} day/s".format(numb_of_years, numb_of_qpick))
+    print("Number or years {} \nYour quick pick is 1 every {} day/s \n----------------------\n".format(numb_of_years, numb_of_qpick))
 
     # Compute data.
     if "Northstar" in GAMES_CHOSEN:
