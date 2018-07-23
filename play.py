@@ -1,22 +1,20 @@
 import games as g
 
 def main():
+    '''Display instructions to select games then enter years followed by how many times'''
+
     g.display_options()
 
-    # Display the games and have the user selec one, etc.
-    g.display_games(g.game_names)
-
-    # Shows the user the games chosen to play.
-    print('\n**You selected:')
-    g.display_games(games_selected)
-
     while True:
-        print("Enter the number of years(whole number only) that you'd like to try:")
+        print("Press 'Control ^ z' to Exit or"\
+              "\nEnter the number of years(whole number only) that you'd like to try:")
         # Get number of years.
-        numb_of_years = validate_integer()
+        numb_of_years = g.validate_integer()
         if numb_of_years < 1 or numb_of_years > 30:
-            print("Lets keep the number of years between 1 and 30")
+            print("---Error-Lets keep the number of years between 1 and 30")
+            continue
         else: break
+
 
     numb_of_days = numb_of_years * 365 # Need days to compute results.
 

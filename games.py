@@ -4,9 +4,9 @@ game_names = ["Power Ball", "Mega Millions", "North Star", "Gopher Five",\
                         "Lotto America", "Lucky For Life"]
 games_selected = [] # Every time the user selects one, it gets added to this list.
 
-def remove_add_display_game_chosen(numbOfGameChosen):
+def game_chosen_add_and_remove(numb_selected):
     for index, val in enumerate(game_names):
-        if index + 1 == numbOfGameChosen:
+        if index + 1 == numb_selected:
             games_selected.append(val)
             game_names.remove(val)
 
@@ -25,31 +25,34 @@ def validate_integer():
             print("Enter a number:")
 
 def display_options():
-    """ Display the instructions at the beginning of the game."""
-
-    display_games(game_names)
+    """
+    Display the instructions at the beginning of the game.
+    The user can select one game at a time or select all.
+    """
 
     while True:
+        # Display list of games still not selected, list will shrink as user selects.
+        display_games(game_names)
 
-        # Display options and loop to get user's chosen ones.
         print("{number} = Select all. "\
-            "\n^  Select one option."\
+            "\n^  Select one option or press 'Control ^ z' to Exit"\
             "\nEnter a number:".format(number=len(game_names) + 1))
 
-        game_chosen_numb = validate_integer() # func to get int input only.
+        # This will make sure that the number entered is an integer only.
+        numb_selected = validate_integer()
 
         # Any number that is less than one or greater than the length of game_names + 1.
-        if game_chosen_numb > len(game_names) + 1 or game_chosen_numb < 1:
-            print("-" * 50, "\nOops! Number {} not in list.".format(game_chosen_numb))
+        # +1 is because we want the user be able to select all options.
+        if numb_selected > len(game_names) + 1 or numb_selected < 1:
+            print("-" * 50, "\n---->Oops! Number {} not in list.".format(numb_selected))
             continue
-        # If the selection is the last option, which is select all.
-        if game_chosen_numb == len(game_names) + 1:
+        elif numb_selected == len(game_names) + 1:
             global games_selected
-            [games_selected.append(game) for game in game_names[:-1]]
-            break
-        # If the above condition are false then.
+            [games_selected.append(game) for game in game_names]
+            print("*You have selected...")
+            return display_games(games_selected)
         else:
-            remove_add_display_game_chosen(game_chosen_numb)
+            game_chosen_add_and_remove(numb_selected)
             print("-" * 50, "\n\tYour selection so far:")
             display_games(games_selected)
             yes_no = input("Type: 'y/Yes' to add more, else, press 'ENTER' to continue:\n")
