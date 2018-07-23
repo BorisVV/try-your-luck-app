@@ -93,7 +93,7 @@ def comp_draws(name, numbOfPicks, numbOfDays, drawFive, timesAWeek, drawOne=None
 
     print("\nWins with 4 or more numbers! for {}".format(name))
 
-    for qpick in range(numbOfDays // numbOfPicks): # Fo the quick picks only.
+    for qpick in range(numbOfDays // numbOfPicks): # For the quick picks only.
         QUIT_PICK_FIVE = _pick_five(drawFive)
         if drawOne != None:
             QUIT_PICK_ONE = _pick_one(drawOne)

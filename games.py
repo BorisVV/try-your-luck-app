@@ -31,6 +31,8 @@ def display_options():
     """
 
     while True:
+        if len(game_names) == 0:
+            break
         # Display list of games still not selected, list will shrink as user selects.
         display_games(game_names)
 
@@ -53,20 +55,21 @@ def display_options():
             return display_games(games_selected)
         else:
             game_chosen_add_and_remove(numb_selected)
-            print("-" * 50, "\n\tYour selection so far:")
+            print("-" * 50, "\n\n\tYour selection so far:")
             display_games(games_selected)
-            yes_no = input("Type: 'y/Yes' to add more, else, press 'ENTER' or any other key to continue:\n")
+            yes_no = input("\nType: 'y/Yes' to add more, else, press 'ENTER' or any other key to continue:\n")
             if yes_no.lower() != 'y' and yes_no.lower() != 'yes': break
 
 def getNumberOfYears():
     # User needs to enter a whole number, between the range set.
     while True:
-        print("Press 'Control ^ z' to Exit or"\
+        print("\n\n>>>>>>"\
+              "Press 'Control ^ z' to Exit or"\
               "\nEnter the number of years(whole numbers only) that you'd like to try:")
         # Get number of years.
         numb_of_years = validate_integer()
         if numb_of_years < 1 or numb_of_years > 30:
-            print("---Error-Lets keep the number of years between 1 and 30")
+            print("---Error!---Lets keep the number of years between 1 and 30")
             continue
         else:
             return numb_of_years

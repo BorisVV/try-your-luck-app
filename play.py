@@ -23,15 +23,15 @@ def main():
     # Compute data.
     if "North Star" in _g.games_selected:
         _c_d.comp_draws("Northstar", numb_of_qpick, numb_of_days, _c_d.NORTHSTAR, 7)
-    elif "Gopher Five" in _g.games_selected:
+    if "Gopher Five" in _g.games_selected:
         _c_d.comp_draws("GopherFive", numb_of_qpick, numb_of_days, _c_d.GOPHER5, 3)
-    elif "Power Ball" in _g.games_selected:
+    if "Power Ball" in _g.games_selected:
         _c_d.comp_draws("Powerball", numb_of_qpick, numb_of_days, _c_d.POWERBALL, 2, _c_d.POWERPLAY)
-    elif "Mega Millions" in _g.games_selected:
+    if "Mega Millions" in _g.games_selected:
         _c_d.comp_draws("MegaMillions", numb_of_qpick, numb_of_days, _c_d.MEGAMILLIONS, 2, _c_d.MEGABALL)
-    elif "Lotto America" in _g.games_selected:
+    if "Lotto America" in _g.games_selected:
         _c_d.comp_draws("LottoAmerica", numb_of_qpick, numb_of_days, _c_d.LOTTOAMERICA, 2, _c_d.LOTAMEPOWERPLAY)
-    elif "Lucky For Life" in _g.games_selected:
+    if "Lucky For Life" in _g.games_selected:
         _c_d.comp_draws("LuckyForLife", numb_of_qpick, numb_of_days, _c_d.LUCKYFORLIFE, 2, _c_d.LUCKYBALL)
 
     _c_d.totalFourOrPlus()
