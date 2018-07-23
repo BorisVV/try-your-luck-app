@@ -5,6 +5,7 @@ def main():
 
     g.display_options()
 
+    # User needs to enter a whole number, between the range set.
     while True:
         print("Press 'Control ^ z' to Exit or"\
               "\nEnter the number of years(whole number only) that you'd like to try:")
@@ -15,10 +16,11 @@ def main():
             continue
         else: break
 
-
+    # Total number of days in the number of years enteed by user.
     numb_of_days = numb_of_years * 365 # Need days to compute results.
 
     while True:
+        # Games are played different, like once a day or twice a week, etc.
         print("\nHow many times do you want to do quick_picks in the {} year/s you entered?"\
         "\n1 = Same quick pick all time?, \n7 = weekly?, \n14 = every two weeks?,"\
         "\n21 = every three weeks?, or \n28 = every month?:".format(numb_of_years))
