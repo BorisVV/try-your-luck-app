@@ -9,16 +9,16 @@ MEGAMILLIONS, MEGABALL = 71, 26
 LUCKYFORLIFE, LUCKYBALL = 49, 19
 
 # game_choices = {
-#     "Power ball": 70,
-#     "Power play": 27,
-#     "Gopher five": 48,
-#     "North star": 32,
-#     "Lotto america": 53,
-#     "Lotto play": 11,
-#     "Mega millions": 71,
-#     "Mega ball": 26,
-#     "Lucky for life": 49,
-#     "Lucky ball": 19,
+#     "Power Ball": 70,
+#     "Power Play": 27,
+#     "Gopher Five": 48,
+#     "North Star": 32,
+#     "Lotto America": 53,
+#     "Star Ball": 11,
+#     "Mega Millions": 71,
+#     "Mega Ball": 26,
+#     "Lucky For Life": 49,
+#     "Lucky Ball": 19,
 #     }
 
 
@@ -46,13 +46,13 @@ def _pick_one(game):
     return set(random.sample(range(1, game), 1))
 
 def _wins_five_numbs_games(*fiveNumbs):
-    print("  It took {:.2f} years to win with \t*******{}* numbers!"\
+    print("  It took {:.2f} years to win with \t***** {} numbers!"\
                 "\n\t{}   <--Your numbers"\
                 "\n\t{}   <--Comp numbers"\
                 "\n\t{}   <--Matching numbers".format(*fiveNumbs))
 
 def _wins_six_numbs_games(*sixNumbs):
-    print("  It took {:.2f} years to win with \t*{}* numbers!"\
+    print("  It took {:.2f} years to win with \t****** {} numbers!"\
                 "\n\t{} {}   <--Your numbers"\
                 "\n\t{} {}   <--Comp numbers"\
                 "\n\t{} {}   <--Matching numbers".format(*sixNumbs))
@@ -70,10 +70,10 @@ def display_results(years, name):
     if name == "Powerball" or name == "MegaMillions" or name == "LuckyForLife" or name == "LottoAmerica":
         print("There were {} times with 6 numbers.".format(SIX_NUMBS))
 
-def wins_six_numbs_games(*args):
-    _wins_six_numbs_games((COUNTER/365), numbOfMatches, sorted(QUIT_PICK_FIVE),\
-        QUIT_PICK_ONE,sorted(all_numbs), quick_one, sorted(draws), draw_one)
-    return FIVE_NUMBS += 1
+# def wins_six_numbs_games(*args):
+#     _wins_six_numbs_games((COUNTER/365), numbOfMatches, sorted(QUIT_PICK_FIVE),\
+#         QUIT_PICK_ONE,sorted(all_numbs), quick_one, sorted(draws), draw_one)
+#     return FIVE_NUMBS += 1
 
 def comp_draws(name, numbOfPicks, numbOfDays, drawFive, timesAWeek, drawOne=None):
     global ONE_NUMB, TWO_NUMBS, THREE_NUMBS, FOUR_NUMBS, FIVE_NUMBS, SIX_NUMBS,\
