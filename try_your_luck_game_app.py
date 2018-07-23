@@ -1,7 +1,9 @@
 import compute_data
 
 GAMES_OPTIONS = ["Powerball", "MegaMillions", "Northstar", "GopherFive",\
-"LottoAmerica", "LuckyForLife", "Select All"]
+"LottoAmerica", "LuckyForLife"]
+
+select_all = len(GAMES_OPTIONS)
 
 GAMES_CHOSEN = [] # Every time the user selects one, it gets added to this list.
 
