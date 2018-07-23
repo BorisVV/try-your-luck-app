@@ -1,11 +1,14 @@
+import games as g
 
 def main():
+    g.display_options()
+
     # Display the games and have the user selec one, etc.
-    display_options()
+    g.display_games(g.game_names)
 
     # Shows the user the games chosen to play.
     print('\n**You selected:')
-    display_games(GAMES_CHOSEN)
+    g.display_games(games_selected)
 
     while True:
         print("Enter the number of years(whole number only) that you'd like to try:")
@@ -31,17 +34,17 @@ def main():
     print("Number or years {} \nYour quick pick is 1 every {} day/s \n----------------------\n".format(numb_of_years, numb_of_qpick))
 
     # Compute data.
-    if "Northstar" in GAMES_CHOSEN:
+    if "Northstar" in games_selected:
         compute_data.comp_draws("Northstar", numb_of_qpick, numb_of_days, compute_data.NORTHSTAR, 7)
-    if "GopherFive" in GAMES_CHOSEN:
+    if "GopherFive" in games_selected:
         compute_data.comp_draws("GopherFive", numb_of_qpick, numb_of_days, compute_data.GOPHER5, 3)
-    if "Powerball" in GAMES_CHOSEN:
+    if "Powerball" in games_selected:
         compute_data.comp_draws("Powerball", numb_of_qpick, numb_of_days, compute_data.POWERBALL, 2, compute_data.POWERPLAY)
-    if "MegaMillions" in GAMES_CHOSEN:
+    if "MegaMillions" in games_selected:
         compute_data.comp_draws("MegaMillions", numb_of_qpick, numb_of_days, compute_data.MEGAMILLIONS, 2, compute_data.MEGABALL)
-    if "LottoAmerica" in GAMES_CHOSEN:
+    if "LottoAmerica" in games_selected:
         compute_data.comp_draws("LottoAmerica", numb_of_qpick, numb_of_days, compute_data.LOTTOAMERICA, 2, compute_data.LOTAMEPOWERPLAY)
-    if "LuckyForLife" in GAMES_CHOSEN:
+    if "LuckyForLife" in games_selected:
         compute_data.comp_draws("LuckyForLife", numb_of_qpick, numb_of_days, compute_data.LUCKYFORLIFE, 2, compute_data.LUCKYBALL)
 
     compute_data.totalFourOrPlus()
