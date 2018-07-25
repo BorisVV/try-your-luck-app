@@ -77,12 +77,13 @@ def getNumberOfYears():
 def getNumbOfQuickPicks(numb_of_years):
     while True:
         # Games are played different, like once a day or twice a week, etc.
-        print("\nHow many times do you want to do quick_picks in the {} year/s that you entered?"\
-        "\n1 = Same quick pick all time?, \n7 = weekly?, \n14 = every two weeks?,"\
-        "\n21 = every three weeks?, or \n28 = every month?:".format(numb_of_years))
+        print("\n(Some games is daily, others 6=(2xWeekly), etc.)"\
+        "\nHow frequently do you want to do quick_picks in the number of {} year/s that you entered?"\
+        "\n1 = Once?, \n7 = weekly? , \n14 = every two weeks?"\
+        "\n21 = every three weeks? or \n28 = every month?:".format(numb_of_years))
         numb_of_qpick = validate_integer()
         if numb_of_qpick != 1 and numb_of_qpick != 7 and numb_of_qpick != 14\
                 and numb_of_qpick != 21 and numb_of_qpick != 28:
-            print("\n Oops! Enter one number in options only. try again!")
-        else:
-            return numb_of_qpick
+            print("\n Oops! Enter one number from the options only. try again!")
+            continue
+        return numb_of_qpick

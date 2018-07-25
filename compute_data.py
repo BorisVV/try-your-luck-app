@@ -21,13 +21,12 @@ LUCKYFORLIFE, LUCKYBALL = 49, 19
 #     "Lucky Ball": 19,
 #     }
 
+# matches with one number or more...
+match_one_numb, match_two_numbs, match_three_numbs, match_four_numbs, match_five_numbs, match_six_numbs = 0, 0, 0, 0, 0, 0
 
-# Number of times won with 3, 4, etc.
-ONE_NUMB, TWO_NUMBS, THREE_NUMBS, FOUR_NUMBS, FIVE_NUMBS, SIX_NUMBS = 0, 0, 0, 0, 0, 0
-
-COUNTER = 0
-QUIT_PICK_FIVE = set()
-QUIT_PICK_ONE = set()
+counter = 0
+quick_pick_five = set()
+quick_pick_one = set()
 
 totalFourOrMore = 0
 
@@ -65,19 +64,19 @@ def display_results(years, name):
     "\nThere were {} times with 3 numbers."\
     "\nThere were {} times with 4 numbers."\
     "\nThere were {} times with 5 numbers."\
-    .format(years, name, ONE_NUMB, TWO_NUMBS, THREE_NUMBS, FOUR_NUMBS, FIVE_NUMBS))
+    .format(years, name, match_one_numb, match_two_numbs, match_three_numbs, match_four_numbs, match_five_numbs))
 
     if name == "Powerball" or name == "MegaMillions" or name == "LuckyForLife" or name == "LottoAmerica":
-        print("There were {} times with 6 numbers.".format(SIX_NUMBS))
+        print("There were {} times with 6 numbers.".format(match_six_numbs))
 
 # def wins_six_numbs_games(*args):
-#     _wins_six_numbs_games((COUNTER/365), numbOfMatches, sorted(QUIT_PICK_FIVE),\
-#         QUIT_PICK_ONE,sorted(all_numbs), quick_one, sorted(draws), draw_one)
-#     return FIVE_NUMBS += 1
+#     _wins_six_numbs_games((counter/365), numbOfMatches, sorted(quick_pick_five),\
+#         quick_pick_one,sorted(all_numbs), quick_one, sorted(draws), draw_one)
+#     return match_five_numbs += 1
 
 def comp_draws(name, numbOfPicks, numbOfDays, drawFive, timesAWeek, drawOne=None):
-    global ONE_NUMB, TWO_NUMBS, THREE_NUMBS, FOUR_NUMBS, FIVE_NUMBS, SIX_NUMBS,\
-           QUIT_PICK_FIVE, QUIT_PICK_ONE, COUNTER, totalFourOrMore
+    global match_one_numb, match_two_numbs, match_three_numbs, match_four_numbs, match_five_numbs, match_six_numbs,\
+           quick_pick_five, quick_pick_one, counter, totalFourOrMore
 
     if numbOfPicks == 1: # This is for the qpicks that are only drawn once for the time of the program.
         numbOfPicks = numbOfDays
@@ -94,25 +93,25 @@ def comp_draws(name, numbOfPicks, numbOfDays, drawFive, timesAWeek, drawOne=None
     print("\nWins with 4 or more numbers! for {}".format(name))
 
     for qpick in range(numbOfDays // numbOfPicks): # For the quick picks only.
-        QUIT_PICK_FIVE = _pick_five(drawFive)
+        quick_pick_five = _pick_five(drawFive)
         if drawOne != None:
-            QUIT_PICK_ONE = _pick_one(drawOne)
+            quick_pick_one = _pick_one(drawOne)
 
         for x in range(timesAWeek):
             draws = _pick_five(drawFive)
             all_numbs = list(draws) # Save a list for printing.
             # Check and see if there are matching numbers and keep trak or print.
-            draws &= QUIT_PICK_FIVE # kee only the matching numbes <set &= other>.
+            draws &= quick_pick_five # kee only the matching numbes <set &= other>.
 
             if drawOne != None:
                 draw_one = _pick_one(drawOne)
                 quick_one = list(draw_one)
-                draw_one &= QUIT_PICK_ONE # See if it matches.
+                draw_one &= quick_pick_one # See if it matches.
                 numbOfMatches = len(draws) + len(draw_one)
 
-                if numbOfMatches == 1: ONE_NUMB += 1
-                elif numbOfMatches == 2: TWO_NUMBS += 1
-                elif numbOfMatches == 3: THREE_NUMBS += 1
+                if numbOfMatches == 1: match_one_numb += 1
+                elif numbOfMatches == 2: match_two_numbs += 1
+                elif numbOfMatches == 3: match_three_numbs += 1
 
                 elif numbOfMatches > 3:
                     totalFourOrMore += 1
@@ -121,49 +120,49 @@ def comp_draws(name, numbOfPicks, numbOfDays, drawFive, timesAWeek, drawOne=None
                         draw_one = 0
 
                     if numbOfMatches == 4:
-                        _wins_six_numbs_games((COUNTER/365), numbOfMatches, sorted(QUIT_PICK_FIVE),\
-                            QUIT_PICK_ONE, sorted(all_numbs), quick_one, sorted(draws), draw_one)
-                        FOUR_NUMBS += 1
+                        _wins_six_numbs_games((counter/365), numbOfMatches, sorted(quick_pick_five),\
+                            quick_pick_one, sorted(all_numbs), quick_one, sorted(draws), draw_one)
+                        match_four_numbs += 1
 
                     elif numbOfMatches == 5:
                         print("$" * 60) # TODO: remove add to a var to store result.
-                        _wins_six_numbs_games((COUNTER/365), numbOfMatches, sorted(QUIT_PICK_FIVE),\
-                            QUIT_PICK_ONE,sorted(all_numbs), quick_one, sorted(draws), draw_one)
-                        FIVE_NUMBS += 1
+                        _wins_six_numbs_games((counter/365), numbOfMatches, sorted(quick_pick_five),\
+                            quick_pick_one,sorted(all_numbs), quick_one, sorted(draws), draw_one)
+                        match_five_numbs += 1
                         print("$" * 60) # TODO: remove
 
                     else:
                         print("$" * 60) # TODO: remove
-                        _wins_six_numbs_games((COUNTER/365), numbOfMatches, sorted(QUIT_PICK_FIVE),\
-                            QUIT_PICK_ONE, sorted(all_numbs), quick_one, sorted(draws), draw_one)
-                        SIX_NUMBS += 1
+                        _wins_match_six_numbs_games((counter/365), numbOfMatches, sorted(quick_pick_five),\
+                            quick_pick_one, sorted(all_numbs), quick_one, sorted(draws), draw_one)
+                        match_six_numbs += 1
                         print("$" * 60) # TODO: remove
 
             else:
                 numbOfMatches = len(draws)
 
-                if numbOfMatches == 1: ONE_NUMB += 1
-                elif numbOfMatches == 2: TWO_NUMBS += 1
-                elif numbOfMatches == 3: THREE_NUMBS += 1
+                if numbOfMatches == 1: match_one_numb += 1
+                elif numbOfMatches == 2: match_two_numbs += 1
+                elif numbOfMatches == 3: match_three_numbs += 1
                 elif numbOfMatches > 3:
                     totalFourOrMore += 1
 
                     if numbOfMatches == 4:
-                        _wins_five_numbs_games((COUNTER/365), numbOfMatches, sorted(QUIT_PICK_FIVE), sorted(all_numbs), sorted(draws))
-                        FOUR_NUMBS += 1
+                        _wins_five_numbs_games((counter/365), numbOfMatches, sorted(quick_pick_five), sorted(all_numbs), sorted(draws))
+                        match_four_numbs += 1
 
                     else:
                         print("$" * 60) # TODO: remove
-                        _wins_five_numbs_games((COUNTER/365), numbOfMatches, sorted(QUIT_PICK_FIVE), sorted(all_numbs), sorted(draws))
-                        FIVE_NUMBS += 1
+                        _wins_five_numbs_games((counter/365), numbOfMatches, sorted(quick_pick_five), sorted(all_numbs), sorted(draws))
+                        match_five_numbs += 1
                         print("$" * 60) # TODO: remove
 
-            COUNTER += 1
+            counter += 1
 
-    if FOUR_NUMBS == 0 and FIVE_NUMBS == 0 and SIX_NUMBS == 0:
+    if match_four_numbs == 0 and match_five_numbs == 0 and match_six_numbs == 0:
         print("#No wins with 4 numbers or more.#")
 
     display_results(int(numbOfDays/365), name)
 
-    ONE_NUMB, TWO_NUMBS, THREE_NUMBS, FOUR_NUMBS, FIVE_NUMBS, SIX_NUMBS = 0, 0, 0, 0, 0, 0
-    COUNTER, QUIT_PICK_FIVE, QUIT_PICK_ONE = 0, 0, 0
+    match_one_numb, match_two_numbs, match_three_numbs, match_four_numbs, match_five_numbs, match_six_numbs = 0, 0, 0, 0, 0, 0
+    counter, quick_pick_five, quick_pick_one = 0, 0, 0

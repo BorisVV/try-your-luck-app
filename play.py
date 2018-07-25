@@ -9,16 +9,11 @@ def main():
     # This will return the number of years the user wants to play the numbers.
     numb_of_years = _g.getNumberOfYears()
 
-    # Total number of days in the number of years enteed by user.
-    numb_of_days = numb_of_years * 365 # Need days to compute results.
-
     # Get the quickpicks selection, it can be weekly, every two weeks, etc..
     numb_of_qpick = _g.getNumbOfQuickPicks(numb_of_years)
 
     print("\n" + "# " * 40)
     print("Number or years {} \nYour quick pick is 1 ticket every {} day/s \n----------------------\n".format(numb_of_years, numb_of_qpick))
-
-
 
     # Compute data.
     if "North Star" in _g.games_selected:
