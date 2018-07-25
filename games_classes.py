@@ -8,7 +8,7 @@ class Game(object):
     def __init__(self, name, numb_of_qpick, numb_of_years):
         self.name = name
         self.numb_of_qpick = numb_of_qpick
-        self.numb_of_years = numb_of_years * 365
+        self.numb_of_days = numb_of_years * 365 # Need to convert to days.
 
 
 #     "Power Ball": 70,

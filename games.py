@@ -1,4 +1,5 @@
 import compute_data
+import time
 
 game_names = ["Power Ball", "Mega Millions", "North Star", "Gopher Five",\
                         "Lotto America", "Lucky For Life"]
@@ -22,7 +23,7 @@ def validate_integer():
             usr_int = int(input())
             return usr_int
         except:
-            print("Enter a number:")
+            print("OOps!! Enter a valid number:")
 
 def display_options():
     """
@@ -36,9 +37,7 @@ def display_options():
         # Display list of games still not selected, list will shrink as user selects.
         display_games(game_names)
 
-        print("{number} = Select all. "\
-            "\n^  Select one option or press 'Control ^ z' to Exit"\
-            "\nEnter a number:".format(number=len(game_names) + 1))
+        print("{number} = Select all. \n^  Select one option or press 'Control ^ z' to Exit:".format(number=len(game_names) + 1))
 
         # This will make sure that the number entered is an integer only.
         numb_selected = validate_integer()
@@ -47,6 +46,7 @@ def display_options():
         # +1 is because we want the user be able to select all options.
         if numb_selected > len(game_names) + 1 or numb_selected < 1:
             print("-" * 50, "\n---->Oops! Number {} not in list.".format(numb_selected))
+            time.sleep(3)
             continue
         elif numb_selected == len(game_names) + 1:
             global games_selected
@@ -57,19 +57,18 @@ def display_options():
             game_chosen_add_and_remove(numb_selected)
             print("-" * 50, "\n\n\tYour selection so far:")
             display_games(games_selected)
-            yes_no = input("\nType: 'y/Yes' to add more, else, press 'ENTER' or any other key to continue:\n")
+            yes_no = input("\nAdd more? \n'y' / 'Yes' or (press 'ENTER' or any other key to Exit and continue. \nPress 'Control ^ z' to Exit:")
             if yes_no.lower() != 'y' and yes_no.lower() != 'yes': break
 
 def getNumberOfYears():
     # User needs to enter a whole number, between the range set.
     while True:
-        print("\n\n>>>>>>"\
-              "Press 'Control ^ z' to Exit or"\
-              "\nEnter the number of years(whole numbers only) that you'd like to try:")
+        print("\n>>>Next step. \nNumber of years(whole numbers only) that you'd like to try \nPress 'Control ^ z' to Exit:")
         # Get number of years.
         numb_of_years = validate_integer()
         if numb_of_years < 1 or numb_of_years > 30:
             print("---Error!---Lets keep the number of years between 1 and 30")
+            time.sleep(3)
             continue
         else:
             return numb_of_years
@@ -77,13 +76,11 @@ def getNumberOfYears():
 def getNumbOfQuickPicks(numb_of_years):
     while True:
         # Games are played different, like once a day or twice a week, etc.
-        print("\n(Some games is daily, others 6=(2xWeekly), etc.)"\
-        "\nHow frequently do you want to do quick_picks in the number of {} year/s that you entered?"\
-        "\n1 = Once?, \n7 = weekly? , \n14 = every two weeks?"\
-        "\n21 = every three weeks? or \n28 = every month?:".format(numb_of_years))
+        print("\n>>>Next step.\n(Some games play daily, others 2 e.g. week=(2*week), etc.) \nHow frequently do you want to do quick_picks in the number of {} year/s that you entered? \n1 = Once?, \n2 = weekly? , \n3 = every two weeks? \n4 = every three weeks? or \n5 = every month? \nPress 'Control ^ z' to Exit:".format(numb_of_years))
         numb_of_qpick = validate_integer()
-        if numb_of_qpick != 1 and numb_of_qpick != 7 and numb_of_qpick != 14\
-                and numb_of_qpick != 21 and numb_of_qpick != 28:
+        if numb_of_qpick != 1 and numb_of_qpick != 2 and numb_of_qpick != 3\
+                and numb_of_qpick != 4 and numb_of_qpick != 5:
             print("\n Oops! Enter one number from the options only. try again!")
+            time.sleep(3)
             continue
         return numb_of_qpick
