@@ -19,15 +19,10 @@ class Game(object):
 
     def __init__(self, numb_of_qpick, numb_of_years):
         self.numb_of_qpick = numb_of_qpick
-        # If the user input is other than 1 for numb_of_qpick.
-        if self.numb_of_qpick == 2: #user select 1, 2 or 3.
-            self.numb_of_qpick = 7 #quick pick is good for 7 days.
-        elif self.numb_of_qpick == 3:
-            self.numb_of_qpick = 14 #quick pick is good for 14 days.
         self.numb_of_weeks = (numb_of_years * 365) // 7 # Need to convert to numb_of_weeks.
 
     @abstractmethod
-    def game_name(self):
+    def get_name(self):
         ''' Return the name of the game being called.'''
         pass
 
@@ -55,7 +50,7 @@ class NorthStar(Game):
     North Star has 31 numbers and the computer will select five for the quick pick and the drawings.
     '''
 
-    def game_name(self):
+    def get_name(self):
         return 'North Star'
 
     def calculate(self):
@@ -79,29 +74,29 @@ class NorthStar(Game):
 
 class GopherFive(Game):
 
-    def game_name(self):
+    def get_name(self):
         return 'Gopher Five'
 
     def calculate(self):
-        numbers1 = 48 + 1 #When using range for loops the last number is not counted.
-        if self.numb_of_qpick == 1:
-            self.numb_of_qpick = 3 #Gopher five plays 3 times a week
+        numbers1 = 48 + 1
 
-            #get the numbers for the user/player.
-            userFiveNumbsSet = set(random.sample(range(1, numbers1), 5))
-            print('Works')
-            for i in range(1, self.numb_of_weeks):
-                for plays in range(1, 4):
-                    print(plays)
-                if i == 10:
-                    break
-                continue
-                computer_draws_five = set(random.sample(range(1, numbers1), 5))
-                #the next line needs to convert computer_draws_five to list or else,
-                #it will affect the output of the displayComputerDrawsFive.
-                displayComputerDrawsFive = list(computer_draws_five)
-                computer_draws_five &= userFiveNumbsSet #only keep matching numbers.
-                if len(computer_draws_five) > 2:
-                    print("\n------\n your numbers ", sorted(userFiveNumbsSet))
-                    print("Winnings with 3 or more #'s ", sorted(computer_draws_five))
-                    print("computer numbers ", sorted(displayComputerDrawsFive))
+        if self.numb_of_qpick == 1:
+            while self.numb_of_weeks > 0:
+                #This gamea is played 3 times a week. This is the reason for 3.
+                self.numb_of_qpick = 3 #Gopher five plays 3 times a week
+                while self.numb_of_qpick > 0:
+                    #get the numbers for the user/player.
+                    userFiveNumbsSet = set(random.sample(range(1, numbers1), 5))
+                    computer_draws_five = set(random.sample(range(1, numbers1), 5))
+                    #the next line needs to convert computer_draws_five to list or else,
+                    #it will affect the output of the displayComputerDrawsFive.
+                    displayComputerDrawsFive = list(computer_draws_five)
+                    computer_draws_five &= userFiveNumbsSet #only keep matching numbers.
+                    if len(computer_draws_five) > 2:
+                        print('\nGopherFive')
+                        print("\nWon on {} ".format(self.numb_of_weeks))
+                        print("------\n your numbers ", sorted(userFiveNumbsSet))
+                        print("Winning numbers ", sorted(computer_draws_five))
+                        print("computer numbers ", sorted(displayComputerDrawsFive))
+                    self.numb_of_qpick -= 1
+                self.numb_of_weeks -= 1
