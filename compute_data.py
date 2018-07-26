@@ -8,19 +8,6 @@ LOTTOAMERICA, LOTAMEPOWERPLAY = 53, 11
 MEGAMILLIONS, MEGABALL = 71, 26
 LUCKYFORLIFE, LUCKYBALL = 49, 19
 
-# game_choices = {
-#     "Power Ball": 70,
-#     "Power Play": 27,
-#     "Gopher Five": 48,
-#     "North Star": 32,
-#     "Lotto America": 53,
-#     "Star Ball": 11,
-#     "Mega Millions": 71,
-#     "Mega Ball": 26,
-#     "Lucky For Life": 49,
-#     "Lucky Ball": 19,
-#     }
-
 # matches with one number or more...
 match_one_numb, match_two_numbs, match_three_numbs, match_four_numbs, match_five_numbs, match_six_numbs = 0, 0, 0, 0, 0, 0
 
@@ -68,11 +55,6 @@ def display_results(years, name):
 
     if name == "Powerball" or name == "MegaMillions" or name == "LuckyForLife" or name == "LottoAmerica":
         print("There were {} times with 6 numbers.".format(match_six_numbs))
-
-# def wins_six_numbs_games(*args):
-#     _wins_six_numbs_games((counter/365), numbOfMatches, sorted(quick_pick_five),\
-#         quick_pick_one,sorted(all_numbs), quick_one, sorted(draws), draw_one)
-#     return match_five_numbs += 1
 
 def comp_draws(name, numbOfPicks, numbOfDays, drawFive, timesAWeek, drawOne=None):
     global match_one_numb, match_two_numbs, match_three_numbs, match_four_numbs, match_five_numbs, match_six_numbs,\
