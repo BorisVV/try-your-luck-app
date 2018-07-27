@@ -17,15 +17,14 @@ def main():
 
     from games_classes import NorthStar, GopherFive
 
-    if "North Star" in _g.games_selected:
-        ns = NorthStar(numb_of_qpick, numb_of_years)
-        print(ns.get_name())
-        ns.calculate()
+    ns = NorthStar("North Star", numb_of_qpick, numb_of_years)
+    gf = GopherFive("Gopher Five", numb_of_qpick, numb_of_years)
 
+    if "North Star" in _g.games_selected:
+        ns.calculate()
     if "Gopher Five" in _g.games_selected:
-        gf = GopherFive(numb_of_qpick, numb_of_years)
-        print(gf.get_name())
         gf.calculate()
+
 
 
 
