@@ -1,5 +1,6 @@
 import games as _g
 import compute_data as _c_d
+from games_classes import NorthStar, GopherFive
 
 def main():
     '''Display instructions to select games then enter years followed by how many times'''
@@ -13,9 +14,8 @@ def main():
     numb_of_qpick = _g.getNumbOfQuickPicks(numb_of_years)
 
     print("\n" + "# " * 40)
-    print("Number or years {} \nYour quick pick is 1 ticket every {} day/s \n----------------------\n".format(numb_of_years, numb_of_qpick))
+    print("Number or years entered {} \n----------------------\n".format(numb_of_years))
 
-    from games_classes import NorthStar, GopherFive
 
     ns = NorthStar("North Star", numb_of_qpick, numb_of_years)
     gf = GopherFive("Gopher Five", numb_of_qpick, numb_of_years)

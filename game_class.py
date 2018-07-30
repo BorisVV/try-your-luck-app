@@ -38,17 +38,21 @@ class Game(object):
         pass
 
     @abstractmethod
+    def get_numb_qpicks(self):
+        ''' Returns the user's input for the number of weeks entered '''
+
+    @abstractmethod
     def userQPickFive(self):
         #get the numbers for the user/player.
         self.userFiveNumbsSet = set(random.sample(range(1, self.numbers1), 5))
 
     @abstractmethod
-    def compDrawingFive(self, numb):
+    def computerDrawingFives(self, displayIFMoreThan=3):
         #draw the computer drawings.
         self.computer_draws_five = set(random.sample(range(1, self.numbers1), 5))
         #the next line needs to convert computer_draws_five to list or else,
         #it will affect the output of the displayComputerDrawsFive.
         self.displayComputerDrawsFive = list(self.computer_draws_five)
         self.computer_draws_five &= self.userFiveNumbsSet #only keep matching numbers.
-        if len(self.computer_draws_five) > int(numb):
+        if len(self.computer_draws_five) > int(displayIFMoreThan):
             print("\n------\n{} \nWon on try number {} \nYour numbers {}\nWinnings with 3 or more #'s {} \nComputer numbers {}".format(self.name, self.counter, sorted(self.userFiveNumbsSet), sorted(self.computer_draws_five), sorted(self.displayComputerDrawsFive)))

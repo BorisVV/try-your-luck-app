@@ -33,6 +33,7 @@ def display_options():
 
     while True:
         if len(game_names) == 0:
+            print("No more games available.")
             break
         # Display list of games still not selected, list will shrink as user selects.
         display_games(game_names)
@@ -45,20 +46,20 @@ def display_options():
         # Any number that is less than one or greater than the length of game_names + 1.
         # +1 is because we want the user be able to select all options.
         if numb_selected > len(game_names) + 1 or numb_selected < 1:
-            print("-" * 50, "\n---->Oops! Number {} not in list.".format(numb_selected))
+            print("-" * 50 + "\n---->Oops! Number {} not in list.".format(numb_selected))
             time.sleep(2)
             continue
         elif numb_selected == len(game_names) + 1:
             global games_selected
             [games_selected.append(game) for game in game_names]
-            print("*You have selected...")
+            print("*You have selected..all games.")
             return display_games(games_selected)
         else:
             game_chosen_add_and_remove(numb_selected)
-            print("-" * 50, "\n\n\tYour selection so far:")
+            print(("-" * 50) + "\n\tYour selection so far:")
             display_games(games_selected)
-            yes_no = input("\nAdd more? \n'y' / 'Yes' or (press 'ENTER' or any other key to Exit and continue. \nPress 'Control^z' to Exit:")
-            if yes_no.lower() != 'y' and yes_no.lower() != 'yes': break
+            yes_add = input("\nAdd more? \nEnter 'y/yes' to add more -- or 'n/no' to continue, \n'Control^z' to Exit completely. \n")
+            if yes_add != 'y' and yes_add != 'yes': break
 
 def getNumberOfYears():
     # User needs to enter a whole number, between the range set.
@@ -84,7 +85,7 @@ def getNumbOfQuickPicks(numb_of_years):
     '''
 
     while True:
-        print("\n>>>Next step.\n(Some games play daily, others twice a week, etc.) \nHow frequently do you want to do quick_picks for the {} year/s that you entered? \n1 = Once?(For every drawing buy a ticket), \n2 = weekly?(Depending of the game, it can be 2, 3, or 7), \n3 = every two weeks?(Similar to number 2 option) \nPress 'Control^z' to Exit. Enter 1, 2, or 3:".format(numb_of_years))
+        print("\n>>>Next step.\n(Some games play daily, others twice a week, etc.) \nHow frequently do you want to do quick_picks for the {} year/s that you entered? \n1 = Once?(For every drawing buy a ticket), \n2 = weekly?(Depending of the game, it can be 2, 3, or 7 times a week), \n3 = every two weeks?(Very similar to number 2 option) \nPress 'Control^z' to Exit. Enter 1, 2, or 3:".format(numb_of_years))
         numb_of_qpick = validate_integer()
         if numb_of_qpick != 1 and numb_of_qpick != 2 and numb_of_qpick != 3:
             print("\n Oops! Enter one number from the options only. try again!")
